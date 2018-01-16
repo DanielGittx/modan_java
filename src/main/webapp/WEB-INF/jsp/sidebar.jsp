@@ -8,12 +8,12 @@
 		<!-- chart types -->
 		<li data-toggle="collapse" href="#chart-types" aria-expanded="false"
 			aria-controls="chart-types"><a href="#"> 
-			<i class="fa fa-area-chart" aria-hidden="true"></i><span>CHART TYPES</span>
+			<i class="fa fa-area-chart" aria-hidden="true"></i><span>SUMMARY</span>
 		</a></li>
 		<li>
 			<ul id="chart-types" class="sub-menu collapse ${fn:contains(pageContext.request.requestURI,'chart-types') ? 'in' : ''}">
 				<li><a href="${pageContext.request.contextPath}/chart-types/cctv_data_mgt">CCTV Backup</a></li>
-                                <li><a href="${pageContext.request.contextPath}/chart-types/overview">Overview</a></li>
+<!--                                <li><a href="${pageContext.request.contextPath}/chart-types/overview">Overview</a></li>-->
                                 <li><a href="${pageContext.request.contextPath}/chart-types/realtime">Real Time</a></li>
 <!--                                <li><a href="${pageContext.request.contextPath}/chart-types/overview">Overview</a></li>-->
 <!--                                <li><a href="${pageContext.request.contextPath}/chart-types/column">Column Chart</a></li>
