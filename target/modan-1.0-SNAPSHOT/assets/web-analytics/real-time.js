@@ -681,7 +681,7 @@ $(function () {
 		for (var i = 0; i < allCharts.length; i++)
 			allCharts[i].render();
 	}
-	
+	/*           // These is the reason why toggling sidepanel failed
 	function sidebarToggleOnClick() {
 		$('#sidebar-toggle-button').on('click', function () {
 			$('#sidebar').toggleClass('sidebar-toggle');
@@ -689,7 +689,7 @@ $(function () {
 			renderAllCharts();
 		});	
 	}
-	
+	*/
 	(function init() {
 		customizeCharts();
 		$(window).resize(customizeCharts);

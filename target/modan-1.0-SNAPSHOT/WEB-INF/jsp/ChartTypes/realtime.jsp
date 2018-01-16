@@ -30,16 +30,18 @@
 
 
 <!-- scripts -->
-<script src="<c:url value="/assets/jquery/jquery-3.1.0.min.js" />" type="text/javascript"></script>
+
 <script src="<c:url value="/assets/tether/tether.min.js" />"	type="text/javascript"></script>
 <script src="<c:url value="/assets/script/canvasjs.min.js" />"	type="text/javascript"></script>
 <script src="<c:url value="/assets/bootstrap/bootstrap4-alpha3.min.js" />" type="text/javascript"></script>
 <script src="<c:url value="/assets/web-analytics/real-time.js" />"type="text/javascript"></script>
 
+<script src="<c:url value="/assets/jquery/jquery-3.1.0.min.js" />" type="text/javascript"></script>
+
 </head>
 
 <body> 
-
+    
 <div class="container-fluid">
 
 			<!-- 1st row -->
@@ -98,6 +100,6 @@
 
 
 
-<body
+</body>
 
 </html>
