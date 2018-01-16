@@ -1,43 +1,103 @@
+<%-- 
+    Document   : index
+    Created on : Jan 16, 2018, 1:39:56 PM
+    Author     : danial
+--%>
+
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.*" %>
 <%@page import="com.google.gson.Gson"%>
 <%@page import="com.google.gson.JsonObject"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<div id='chartContainer'></div>>
-<%
-	Gson gsonObj = new Gson();
-	Map<Object,Object> map = null;
-	List<Map<Object,Object>> list = new ArrayList<Map<Object,Object>>();
-	
-	map = new HashMap<Object,Object>(); map.put("x", 10); map.put("y", 71); list.add(map);
-	map = new HashMap<Object,Object>(); map.put("x", 20);  map.put("y", 55); list.add(map);
-	map = new HashMap<Object,Object>(); map.put("x", 30);  map.put("y", 50); list.add(map);
-	map = new HashMap<Object,Object>(); map.put("x", 40);  map.put("y", 65); list.add(map);
-	map = new HashMap<Object,Object>(); map.put("x", 50);  map.put("y", 95); list.add(map);
-	map = new HashMap<Object,Object>(); map.put("x", 60);  map.put("y", 68); list.add(map);
-	map = new HashMap<Object,Object>(); map.put("x", 70);  map.put("y", 28); list.add(map);
-	map = new HashMap<Object,Object>(); map.put("x", 80);  map.put("y", 34); list.add(map);
-	map = new HashMap<Object,Object>(); map.put("x", 90);  map.put("y", 14); list.add(map);	
-	String dataPoints = gsonObj.toJson(list);
-	%>
 
-	<script type="text/javascript">
-	$(function () {
-		var chart = new CanvasJS.Chart("chartContainer", {
-			theme: "light2",
-			animationEnabled: true,
-			title: {
-				text: "Simple Column Chart in Spring Web MVC"
-			},
-			subtitles: [
-				{ text: "Try Resizing the Browser" }
-			],
-			data: [{
-				type: "column", //change type to bar, line, area, pie, etc
-				dataPoints: <%out.print(dataPoints);%>
-			}]
-		});
-		chart.render();
-	});
-	</script>
+<!DOCTYPE HTML>
+<html>
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title></title>
+
+<link href="<c:url value="/assets/css/font-roboto.css" />" rel="stylesheet">
+<link href="<c:url value="/assets/bootstrap/bootstrap4-alpha3.min.css"/>" rel="stylesheet">
+<link href="<c:url value="/assets/font-awesome/css/font-awesome.min.css" />" rel="stylesheet">
+<link href="<c:url value="/assets/web-analytics/style.css" />" rel="stylesheet">
+
+
+<!-- scripts -->
+<script src="<c:url value="/assets/jquery/jquery-3.1.0.min.js" />" type="text/javascript"></script>
+<script src="<c:url value="/assets/tether/tether.min.js" />"	type="text/javascript"></script>
+<script src="<c:url value="/assets/script/canvasjs.min.js" />"	type="text/javascript"></script>
+<script src="<c:url value="/assets/bootstrap/bootstrap4-alpha3.min.js" />" type="text/javascript"></script>
+<script src="<c:url value="/assets/web-analytics/overview.js" />"type="text/javascript"></script>
+
+</head>
+
+<body> 
+
+<div class="container-fluid">
+
+			<!-- 1st row -->
+			<div class="row m-b-1">
+				<div class="col-md-12">
+					<div class="card card-block">
+						<h4 class="card-title m-b-2">Revenue - 2015 <span class="tag m-l-1" id="revenue-tag">$2,781,450</span></h4>
+						<div id="revenue-spline-area-chart"></div>
+					</div>
+				</div>
+			</div>
+			<!-- /1st row -->
+
+			<!-- 2nd row -->
+			<div class="row m-b-1">
+				<div class="col-md-12">
+					<div class="card card-block">
+						<h4 class="card-title m-b-2">Revenue By Category</h4>
+						<span class="tag custom-tag hidden-sm-down">Try clicking on any segment</span>
+						<div class="row">
+							<div class="col-md-4">
+								<div id="annual-revenue-by-category-pie-chart"></div>
+							</div>
+							<div class="col-md-8 hidden-sm-down">
+								<div id="monthly-revenue-by-category-column-chart"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /2nd row -->
+
+			<!-- 3rd row -->
+			<div class="row">
+				<div class="col-xl-6">
+					<div class="card card-block">
+						<h4 class="card-title m-b-2">
+							<span id="visitors-chart-heading">New vs Returning Visitors </span>
+							<button class="btn pull-right invisible" type="button" id="visitors-chart-back-button"><i class="fa fa-angle-left fa-lg" aria-hidden="true"></i> Back</button>
+						</h4>
+						<span class="tag custom-tag" id="visitors-chart-tag">Try clicking on any segment</span>
+						<div id="visitors-chart"></div>
+					</div>
+				</div>
+				<div class="col-xl-6">
+					<div class="card card-block">
+						<h4 class="card-title m-b-2">Users</h4>
+						<div id="users-spline-chart"></div>
+					</div>
+				</div>
+			</div>
+			<!-- /3rd row -->
+
+		</div>
+		<!-- /.container-fluid -->
+
+
+
+<body
+
+</html>

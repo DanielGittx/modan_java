@@ -9,10 +9,24 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${title} | modan</title>
+
+
+<!-- Styles-->
 <link href="<c:url value="/assets/css/bootstrap.min.css" />" rel="stylesheet">
 <link href="<c:url value="/assets/font-awesome/css/font-awesome.min.css"/>" rel="stylesheet">
 <link href="<c:url value="/assets/css/style.css" />" rel="stylesheet">
+<link href="<c:url value="/assets/css/font-roboto.css" />" rel="stylesheet">
+<link href="<c:url value="/assets/bootstrap/bootstrap4-alpha3.min.css"/>" rel="stylesheet">
+<link href="<c:url value="/assets/font-awesome/css/font-awesome.min.css" />" rel="stylesheet">
+<link href="<c:url value="/assets/web-analytics/style.css" />" rel="stylesheet">
+
+
 <!-- scripts -->
+<script src="<c:url value="/assets/jquery/jquery-3.1.0.min.js" />" type="text/javascript"></script>
+<script src="<c:url value="/assets/tether/tether.min.js" />"	type="text/javascript"></script>
+<script src="<c:url value="/assets/script/canvasjs.min.js" />"	type="text/javascript"></script>
+<script src="<c:url value="/assets/bootstrap/bootstrap4-alpha3.min.js" />" type="text/javascript"></script>
+<script src="<c:url value="/assets/web-analytics/overview.js" />"type="text/javascript"></script>
 <script src="<c:url value="/assets/script/jquery-1.11.1.min.js" />" type="text/javascript"></script>
 <script src="<c:url value="/assets/script/bootstrap.min.js" />"	type="text/javascript"></script>
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->

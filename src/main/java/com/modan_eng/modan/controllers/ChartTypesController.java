@@ -36,6 +36,14 @@ public class ChartTypesController {
 		modelAndView.addObject("title", "Real Time");
 		return modelAndView;
 	}
+        
+            
+    	@RequestMapping(value = "/overview", method = RequestMethod.GET)
+	public ModelAndView Overview() {
+		ModelAndView modelAndView = new ModelAndView("ChartTypes/overview");
+		modelAndView.addObject("title", "Overview");
+		return modelAndView;
+	}
 	
 	@RequestMapping(value = "/area", method = RequestMethod.GET)
 	public ModelAndView Area() {

@@ -1,12 +1,18 @@
 <%-- 
-    Document   : realtime
-    Created on : Jan 16, 2018, 1:39:28 PM
+    Document   : index
+    Created on : Jan 16, 2018, 1:39:56 PM
     Author     : danial
 --%>
 
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ page import="java.util.*" %>
+<%@page import="com.google.gson.Gson"%>
+<%@page import="com.google.gson.JsonObject"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+
 <!DOCTYPE HTML>
 <html>
 
@@ -14,7 +20,9 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Realtime</title>
+
+<title></title>
+
 <link href="<c:url value="/assets/css/font-roboto.css" />" rel="stylesheet">
 <link href="<c:url value="/assets/bootstrap/bootstrap4-alpha3.min.css"/>" rel="stylesheet">
 <link href="<c:url value="/assets/font-awesome/css/font-awesome.min.css" />" rel="stylesheet">
@@ -26,15 +34,13 @@
 <script src="<c:url value="/assets/tether/tether.min.js" />"	type="text/javascript"></script>
 <script src="<c:url value="/assets/script/canvasjs.min.js" />"	type="text/javascript"></script>
 <script src="<c:url value="/assets/bootstrap/bootstrap4-alpha3.min.js" />" type="text/javascript"></script>
-<script src="<c:url value="/assets/web-analytics/real-time.js" />"	type="text/javascript"></script>
+<script src="<c:url value="/assets/web-analytics/real-time.js" />"type="text/javascript"></script>
 
 </head>
 
 <body> 
 
-<!-- page-content-wrapper -->
-	<div class="page-content-toggle" id="page-content-wrapper">
-		<div class="container-fluid">
+<div class="container-fluid">
 
 			<!-- 1st row -->
 			<div class="row m-b-2">
@@ -90,8 +96,6 @@
 		</div>
 		<!-- /.container-fluid -->
 
-	</div>
-	<!-- /page-content-wrapper -->
 
 
 <body
