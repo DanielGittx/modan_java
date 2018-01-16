@@ -5,8 +5,8 @@
 				<i class="fa fa-bars" aria-hidden="true"></i>
 			</div>
 			<div class="brand">
-				<a href="/"> CanvasJS Examples <span
-					class="hidden-xs text-muted">SPRING WEB MVC</span>
+				<a href="/"> Modan Analytics <span
+					class="hidden-xs text-muted">Dashboard</span>
 				</a>
 			</div>
 		</div>
