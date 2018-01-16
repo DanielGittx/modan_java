@@ -1,0 +1,5 @@
+#NOTE: This is an internal implementation file, its format can be changed without prior notice.
+#Thu Jan 11 08:05:07 EAT 2018
+aws-java-sdk-1.11.257.jar>=
+aws-java-sdk-1.11.257.jar>central=
+aws-java-sdk-1.11.257.pom>central=
