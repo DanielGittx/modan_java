@@ -15,6 +15,21 @@ import java.io.IOException;
 //import com.googlecode.javacv.cpp.opencv_core.IplImage;
 //import static com.googlecode.javacv.cpp.opencv_highgui.*;
 
+import java.awt.Dimension; 
+import java.awt.image.BufferedImage; 
+import java.io.File; 
+ 
+import com.xuggle.mediatool.IMediaWriter; 
+import com.xuggle.mediatool.ToolFactory; 
+import com.xuggle.xuggler.ICodec; 
+import com.xuggle.xuggler.IPixelFormat; 
+import com.xuggle.xuggler.IVideoPicture; 
+import com.xuggle.xuggler.video.ConverterFactory; 
+import com.xuggle.xuggler.video.IConverter;
+import com.github.sarxos.webcam.*;
+
+
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -143,17 +158,55 @@ public class CctvService {
    
         
     }
-    public static void webcam_service ()throws IOException
+    public static void webcam_service ()throws Throwable
     {
-               // get default webcam and open it
-		Webcam webcam = Webcam.getDefault();
-		webcam.open();
+        File file = new File("output.ts"); 
+ 
+        IMediaWriter writer = ToolFactory.makeWriter(file.getName()); 
+        //Dimension size = WebcamResolution.QVGA.getSize(); 
 
-		// get image
-		BufferedImage image = webcam.getImage();
+        //writer.addVideoStream(0, 0, ICodec.ID.CODEC_ID_H264, size.width, size.height); 
 
-		// save image to PNG file
-		ImageIO.write(image, "PNG", new File("test.png"));
+        Webcam webcam = Webcam.getDefault(); 
+        webcam.setViewSize(new Dimension(640, 480)); // set size 
+        webcam.open(); 
+   
+        long start = System.currentTimeMillis(); 
+
+        for (int i = 0; i < 50; i++) { 
+
+         System.out.println("Capture frame " + i); 
+         
+	
+
+         BufferedImage image = ConverterFactory.convertToType(webcam.getImage(), BufferedImage.TYPE_3BYTE_BGR); 
+         IConverter converter = ConverterFactory.createConverter(image, IPixelFormat.Type.YUV420P); 
+
+         IVideoPicture frame = converter.toPicture(image, (System.currentTimeMillis() - start) * 1000); 
+         frame.setKeyFrame(i == 0); 
+         frame.setQuality(0); 
+
+         writer.encodeVideo(0, frame); 
+
+         // 10 FPS 
+         Thread.sleep(100); 
+        } 
+
+        writer.close(); 
+
+        System.out.println("Video recorded in file: " + file.getAbsolutePath()); 
+       } 
         
-    }
+        
+//               // get default webcam and open it
+//		Webcam webcam = Webcam.getDefault();
+//		webcam.open();
+//
+//		// get image
+//		BufferedImage image = webcam.getImage();
+//
+//		// save image to PNG file
+//		ImageIO.write(image, "PNG", new File("test.png"));
+        
+    
 }
