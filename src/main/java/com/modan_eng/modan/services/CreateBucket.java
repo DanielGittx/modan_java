@@ -9,6 +9,7 @@ package com.modan_eng.modan.services;
  *
  * @author danial
  */
+
 import java.io.IOException;
 
 import com.amazonaws.AmazonClientException;
@@ -20,6 +21,7 @@ import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.CreateBucketRequest;
 import com.amazonaws.services.s3.model.GetBucketLocationRequest;
+//import com.microsoft.windowsazure.management
 
 public class CreateBucket {
     
@@ -27,7 +29,8 @@ public class CreateBucket {
 	
 	public static void CreateBucketAWS() throws IOException 
         {
-        AmazonS3 s3client = new AmazonS3Client(new ProfileCredentialsProvider());
+        AmazonS3 s3client;
+        s3client = new AmazonS3Client(new ProfileCredentialsProvider());
         s3client.setRegion(Region.getRegion(Regions.US_WEST_1));
        
         try {

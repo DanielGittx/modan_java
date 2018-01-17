@@ -11,6 +11,9 @@ package com.modan_eng.modan.services;
  */
 import java.io.File;
 import java.io.IOException;
+//import com.googlecode.javacv.OpenCVFrameGrabber;
+//import com.googlecode.javacv.cpp.opencv_core.IplImage;
+//import static com.googlecode.javacv.cpp.opencv_highgui.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +27,13 @@ import com.amazonaws.services.s3.model.InitiateMultipartUploadRequest;
 import com.amazonaws.services.s3.model.InitiateMultipartUploadResult;
 import com.amazonaws.services.s3.model.PartETag;
 import com.amazonaws.services.s3.model.UploadPartRequest;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+import com.github.sarxos.webcam.Webcam;
+import com.github.sarxos.webcam.WebcamDriverUtils;
 
 public class CctvService {
    
@@ -131,6 +141,19 @@ public class CctvService {
                     existingBucketName, keyName, initResponse.getUploadId()));
         }
    
+        
+    }
+    public static void webcam_service ()throws IOException
+    {
+               // get default webcam and open it
+		Webcam webcam = Webcam.getDefault();
+		webcam.open();
+
+		// get image
+		BufferedImage image = webcam.getImage();
+
+		// save image to PNG file
+		ImageIO.write(image, "PNG", new File("test.png"));
         
     }
 }
