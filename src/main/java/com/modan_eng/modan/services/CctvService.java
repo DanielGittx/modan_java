@@ -12,6 +12,8 @@ package com.modan_eng.modan.services;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.AmazonServiceException;
+import com.amazonaws.auth.AWSStaticCredentialsProvider;
+import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.auth.profile.ProfileCredentialsProvider;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +21,6 @@ import java.util.List;
 import java.io.File;
 
 
-import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
@@ -35,6 +36,29 @@ import com.amazonaws.services.s3.transfer.Upload;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+
+import com.amazonaws.auth.PropertiesCredentials;
+import com.amazonaws.regions.Regions;
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.AmazonS3Client;
+import com.amazonaws.services.s3.model.GetObjectRequest;
+import com.amazonaws.services.s3.model.ObjectMetadata;
+import com.amazonaws.services.s3.model.PutObjectRequest;
+import com.amazonaws.services.s3.model.PutObjectResult;
+import com.amazonaws.services.s3.model.S3Object;
+import com.amazonaws.services.s3.model.S3ObjectInputStream;
+import com.amazonaws.util.IOUtils;
+import java.io.FileOutputStream;
+
+//import com.modan_eng.modan.services.AwsTransferManager;
+//import com.amazonaws.services.s3.transfer.Transfer;
+//import com.amazonaws.services.s3.transfer.Transfer.TransferState;
+//import com.amazonaws.services.s3.transfer.TransferManager;
+//import com.amazonaws.services.s3.transfer.TransferProgress;
 
 
 //import javax.imageio.ImageIO;
@@ -101,10 +125,10 @@ public class CctvService {
           return capacityOfFolder;          //Bytes
     }
     
-    public static void UploadObjectMPULowLevelAPI()  throws IOException
+    public static void UploadObjectMPULowLevelAPI()  throws IOException     //
     { 
-        String bucketName  = "modanengine"; 
-        String keyName     = "AKIAJAVRYGK3XEOZV72A";
+        String bucketName  = ""; 
+        String keyName     = "";
         String uploadFileName = "C:/Users/danial/Documents/NEHEMIAH/opencv_libs.txt"; 
    
         AmazonS3 s3client = new AmazonS3Client(new ProfileCredentialsProvider());
@@ -136,8 +160,46 @@ public class CctvService {
         
     }
     
-     public void transfer()
+     public void transfer() throws IOException              //this method work but needs to be refined : TODO
      {
+        System.out.println("Initiating Upload.....");
+        
+        
+        String existingBucketName = "";
+        String keyName = "NehemiahSummary.txt";
+
+        String filePath = "C:/Users/danial/Documents/NEHEMIAH/NehemiahSummary.txt";
+        String amazonFileUploadLocationOriginal=existingBucketName+"/";
+        
+        BasicAWSCredentials awsCreds = new BasicAWSCredentials("", "");   //name and secret key
+        AmazonS3 s3Client = AmazonS3ClientBuilder.standard()
+                        .withCredentials(new AWSStaticCredentialsProvider(awsCreds))
+                        .withRegion(Regions.US_EAST_2)
+                        .build();
+
+
+       // AmazonS3 s3Client = new AmazonS3Client(new PropertiesCredentials(CctvService.class.getResourceAsStream("AwsCredentials.properties")));
+
+        FileInputStream stream = new FileInputStream(filePath);
+        ObjectMetadata objectMetadata = new ObjectMetadata();
+        PutObjectRequest putObjectRequest = new PutObjectRequest(amazonFileUploadLocationOriginal, keyName, stream, objectMetadata);
+        PutObjectResult result = s3Client.putObject(putObjectRequest);
+        System.out.println("Etag:" + result.getETag() + "-->" + result);
+        
+        System.out.println("Upload Successful...");
+         
+         
+         
+         
+         /*
+         File f = new File("C:/Users/danial/Documents/NEHEMIAH/opencv_libs.txt");
+           
+           TransferManager xfer_mgr = new TransferManager();
+           Upload xfer = xfer_mgr.upload("modanengine", "AKIAJAVRYGK3XEOZV72A", f);
+           AwsTransferManager.waitForCompletion(xfer);
+ */
+ 
+         /*
             File f = new File("C:/Users/danial/Documents/NEHEMIAH/opencv_libs.txt");
            TransferManager xfer_mgr = new TransferManager();
            try {
@@ -153,7 +215,26 @@ public class CctvService {
            }
            System.out.println("Uploading Successful\n");
            xfer_mgr.shutdownNow();
+          */ 
            
+     }
+     
+     public void download () throws IOException
+     {
+         String existingBucketName = "<your Bucket>";
+  String keyName = "/"+"";
+  
+       BasicAWSCredentials awsCreds = new BasicAWSCredentials("", "");   //name and secret key
+        AmazonS3 s3Client = AmazonS3ClientBuilder.standard()
+                        .withCredentials(new AWSStaticCredentialsProvider(awsCreds))
+                        .withRegion(Regions.US_EAST_2)
+                        .build();
+  
+  GetObjectRequest request = new GetObjectRequest(existingBucketName,
+    keyName);
+  S3Object object = s3Client.getObject(request);
+  S3ObjectInputStream objectContent = object.getObjectContent();
+  IOUtils.copy(objectContent, new FileOutputStream("D://upload//test.jpg"));
      }
     
     public static void launch_cctv () throws Exception

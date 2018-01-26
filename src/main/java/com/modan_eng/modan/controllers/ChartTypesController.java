@@ -24,19 +24,21 @@ public class ChartTypesController {
                 ModelAndView mav = new ModelAndView("ChartTypes/cctv_data_mgt"); //Name of associated JSP
 		mav.addObject("title", "CCTV Data");
                 CctvService cs = new CctvService();
-//                    try {
+                 try {
 //                        //cs.UploadObjectMPULowLevelAPI();
-//                       // cs.launch_cctv();    //Works as expected!!
+                             System.out.println("just before transfer()");
+                          //   cs.transfer();
+//                        // cs.launch_cctv();    //Works as expected!!
 //                        //CreateBucket Cbucket = new CreateBucket();
 //                        //NeuralNetworkStockPredictor.results();
 //                        //mav.addObject("filesize",cs.getFileSize("C:/Users/danial/Downloads/credentials"));
 //                        //mav.addObject("filesize",cs.getFileSize("H:/HIGH LEVEL/Projects/Retail Analytics/File_system_video/faithful_.mp3")); //NB:-The objects need to be added through JstlView Class
 //                        //mav.addObject("number_of_files_in_folder",cs.getNumberOfFilesInFolder());    //TODO:- Evaluate need to display names of all items in content folder.
 //                        //mav.addObject("content_folder_capacity",cs.getCapacityOfContentFolder());
-//                    } catch (Exception ex) {
-//                        Logger.getLogger(ChartTypesController.class.getName()).log(Level.SEVERE, null, ex);
-//                    }
-                cs.transfer();
+                    } catch (Exception ex) {
+                        Logger.getLogger(ChartTypesController.class.getName()).log(Level.SEVERE, null, ex);
+                 }
+               
                 mav.addObject("filesize",900); //NB:-The objects need to be added through JstlView Class
                 mav.addObject("number_of_files_in_folder",15);    //TODO:- Evaluate need to display names of all items in content folder. 
                 mav.addObject("content_folder_capacity",105);
