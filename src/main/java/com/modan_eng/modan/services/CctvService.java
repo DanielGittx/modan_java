@@ -10,6 +10,9 @@ package com.modan_eng.modan.services;
  * @author danial
  */
 
+import com.amazonaws.AmazonClientException;
+import com.amazonaws.AmazonServiceException;
+import com.amazonaws.auth.profile.ProfileCredentialsProvider;
 import java.util.ArrayList;
 import java.util.List;
 //import java.awt.image.BufferedImage;
@@ -18,13 +21,20 @@ import java.io.File;
 
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.AbortMultipartUploadRequest;
 import com.amazonaws.services.s3.model.CompleteMultipartUploadRequest;
 import com.amazonaws.services.s3.model.InitiateMultipartUploadRequest;
 import com.amazonaws.services.s3.model.InitiateMultipartUploadResult;
 import com.amazonaws.services.s3.model.PartETag;
+import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.services.s3.model.UploadPartRequest;
+import com.amazonaws.services.s3.transfer.TransferManager;
+import com.amazonaws.services.s3.transfer.Upload;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 
 
 //import javax.imageio.ImageIO;
@@ -91,70 +101,73 @@ public class CctvService {
           return capacityOfFolder;          //Bytes
     }
     
-    public static void UploadObjectMPULowLevelAPI() //throws IOException
+    public static void UploadObjectMPULowLevelAPI()  throws IOException
     { 
-        String existingBucketName  = "modanengine"; 
-        String keyName             = "AKIAJAVRYGK3XEOZV72A";
-        String filePath            = "C:/Users/danial/Documents/NEHEMIAH/opencv_libs.txt";   
-        
-//        AmazonS3Client s3Client = new AmazonS3Client(new ProfileCredentialsProvider());      
-          AmazonS3 s3Client = AmazonS3ClientBuilder.standard()
-                       .withRegion(Regions.US_EAST_1)
-                       .build();
-
-        // Create a list of UploadPartResponse objects. You get one of these
-        // for each part upload.
-        List<PartETag> partETags = new ArrayList<PartETag>();
-
-        // Step 1: Initialize.
-        InitiateMultipartUploadRequest initRequest = new 
-             InitiateMultipartUploadRequest(existingBucketName, keyName);
-        InitiateMultipartUploadResult initResponse = 
-        	                   s3Client.initiateMultipartUpload(initRequest);
-
-        File file = new File(filePath);
-        long contentLength = file.length();
-        long partSize = 5242880; // Set part size to 5 MB.
-
+        String bucketName  = "modanengine"; 
+        String keyName     = "AKIAJAVRYGK3XEOZV72A";
+        String uploadFileName = "C:/Users/danial/Documents/NEHEMIAH/opencv_libs.txt"; 
+   
+        AmazonS3 s3client = new AmazonS3Client(new ProfileCredentialsProvider());
         try {
-            // Step 2: Upload parts.
-            long filePosition = 0;
-            for (int i = 1; filePosition < contentLength; i++) {
-                // Last part can be less than 5 MB. Adjust part size.
-            	partSize = Math.min(partSize, (contentLength - filePosition));
-            	
-                // Create request to upload a part.
-                UploadPartRequest uploadRequest = new UploadPartRequest()
-                    .withBucketName(existingBucketName).withKey(keyName)
-                    .withUploadId(initResponse.getUploadId()).withPartNumber(i)
-                    .withFileOffset(filePosition)
-                    .withFile(file)
-                    .withPartSize(partSize);
+            System.out.println("Uploading a new object to S3 from a file\n");
+            File file = new File(uploadFileName);
+            s3client.putObject(new PutObjectRequest(
+            		                 bucketName, keyName, file));
 
-                // Upload part and add response to our list.
-                partETags.add(
-                		s3Client.uploadPart(uploadRequest).getPartETag());
-
-                filePosition += partSize;
-            }
-
-            // Step 3: Complete.           
-            CompleteMultipartUploadRequest compRequest = new 
-                         CompleteMultipartUploadRequest(
-                                    existingBucketName, 
-                                    keyName, 
-                                    initResponse.getUploadId(), 
-                                    partETags);
-
-            s3Client.completeMultipartUpload(compRequest);
-            //System.out.println("completed...");
-        } catch (Exception e) {
-            //System.out.println(e);
-            s3Client.abortMultipartUpload(new AbortMultipartUploadRequest(
-                    existingBucketName, keyName, initResponse.getUploadId()));
+         } catch (AmazonServiceException ase) {
+            System.out.println("Caught an AmazonServiceException, which " +
+            		"means your request made it " +
+                    "to Amazon S3, but was rejected with an error response" +
+                    " for some reason.");
+            System.out.println("Error Message:    " + ase.getMessage());
+            System.out.println("HTTP Status Code: " + ase.getStatusCode());
+            System.out.println("AWS Error Code:   " + ase.getErrorCode());
+            System.out.println("Error Type:       " + ase.getErrorType());
+            System.out.println("Request ID:       " + ase.getRequestId());
+        } catch (AmazonClientException ace) {
+            System.out.println("Caught an AmazonClientException, which " +
+            		"means the client encountered " +
+                    "an internal error while trying to " +
+                    "communicate with S3, " +
+                    "such as not being able to access the network.");
+            System.out.println("Error Message: " + ace.getMessage());
         }
    
         
+    }
+    
+     public void transfer()
+     {
+            File f = new File("C:/Users/danial/Documents/NEHEMIAH/opencv_libs.txt");
+           TransferManager xfer_mgr = new TransferManager();
+           try {
+               
+               System.out.println("Uploading a new object to S3 from local folder.....\n");
+               Upload xfer = xfer_mgr.upload("modanengine", "AKIAJAVRYGK3XEOZV72A", f);
+               // loop with Transfer.isDone()
+               //  or block with Transfer.waitForCompletion()
+           } catch (AmazonServiceException e) {
+               System.err.println(e.getErrorMessage());
+               System.out.println("EXCEPTION:Uploading Unsuccessful  :( \n");
+               System.exit(1);
+           }
+           System.out.println("Uploading Successful\n");
+           xfer_mgr.shutdownNow();
+           
+     }
+    
+    public static void launch_cctv () throws Exception
+    {
+       BufferedWriter fileOut;
+       String itsFileLocation = "H:/jobs/dll/ModamEngine.exe";
+       System.out.println(itsFileLocation);
+       Runtime runtime = Runtime.getRuntime();
+       try {
+        Process process =runtime.exec("H:/jobs/dll/ModamEngine.exe");
+       } catch (IOException e) {
+        e.printStackTrace();
+       }
+          
     }
         
    }
