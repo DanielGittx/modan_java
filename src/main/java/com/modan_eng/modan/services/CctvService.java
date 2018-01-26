@@ -9,29 +9,12 @@ package com.modan_eng.modan.services;
  *
  * @author danial
  */
-import java.io.File;
-import java.io.IOException;
-//import com.googlecode.javacv.OpenCVFrameGrabber;
-//import com.googlecode.javacv.cpp.opencv_core.IplImage;
-//import static com.googlecode.javacv.cpp.opencv_highgui.*;
-
-import java.awt.Dimension; 
-import java.awt.image.BufferedImage; 
-import java.io.File; 
- 
-import com.xuggle.mediatool.IMediaWriter; 
-import com.xuggle.mediatool.ToolFactory; 
-import com.xuggle.xuggler.ICodec; 
-import com.xuggle.xuggler.IPixelFormat; 
-import com.xuggle.xuggler.IVideoPicture; 
-import com.xuggle.xuggler.video.ConverterFactory; 
-import com.xuggle.xuggler.video.IConverter;
-import com.github.sarxos.webcam.*;
-
-
 
 import java.util.ArrayList;
 import java.util.List;
+//import java.awt.image.BufferedImage;
+import java.io.File;
+
 
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3;
@@ -42,13 +25,27 @@ import com.amazonaws.services.s3.model.InitiateMultipartUploadRequest;
 import com.amazonaws.services.s3.model.InitiateMultipartUploadResult;
 import com.amazonaws.services.s3.model.PartETag;
 import com.amazonaws.services.s3.model.UploadPartRequest;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
-import com.github.sarxos.webcam.Webcam;
-import com.github.sarxos.webcam.WebcamDriverUtils;
+
+//import javax.imageio.ImageIO;
+//import com.github.sarxos.webcam.Webcam;
+//import com.github.sarxos.webcam.WebcamDriverUtils;
+//import com.xuggle.mediatool.IMediaWriter; 
+//import com.xuggle.mediatool.ToolFactory; 
+//import com.xuggle.xuggler.ICodec; 
+//import com.xuggle.xuggler.IPixelFormat; 
+//import com.xuggle.xuggler.IVideoPicture; 
+//import com.xuggle.xuggler.video.ConverterFactory; 
+//import com.xuggle.xuggler.video.IConverter;
+
+//import com.googlecode.javacv.OpenCVFrameGrabber;
+//import com.googlecode.javacv.cpp.opencv_core.IplImage;
+//import static com.googlecode.javacv.cpp.opencv_highgui.*;
+//import org.bytedeco.javacv.*;
+//
+//import static org.bytedeco.javacpp.opencv_core.IplImage;
+//import static org.bytedeco.javacpp.opencv_core.cvFlip;
+//import static org.bytedeco.javacpp.opencv_imgcodecs.cvSaveImage;
 
 public class CctvService {
    
@@ -64,7 +61,7 @@ public class CctvService {
      // Get number of file(s)/items in content folder
     public static int getNumberOfFilesInFolder()
     {
-        File folder = new File("H:/HIGH LEVEL/Projects/Retail Analytics/File_system_video");
+        File folder = new File("C:/Users/danial/Documents/NetBeansProjects/Image_Processing_dll/ModamEngine/records");
         //File folder = new File("C:/Users/danial/Downloads");
         File[] listOfFiles = folder.listFiles(); 
 
@@ -81,7 +78,7 @@ public class CctvService {
     }
     // Get capacity of content folder
     public static long getCapacityOfContentFolder(){
-        File File_system_video_directory = new File("H:/HIGH LEVEL/Projects/Retail Analytics/File_system_video");
+        File File_system_video_directory = new File("C:/Users/danial/Documents/NetBeansProjects/Image_Processing_dll/ModamEngine/records");
         //File File_system_video_directory = new File("C:/Users/danial/Downloads");
         long capacityOfFolder =0;
             for (File file : File_system_video_directory.listFiles()) {
@@ -90,18 +87,19 @@ public class CctvService {
         else
             capacityOfFolder += getCapacityOfContentFolder();
     }
-          return capacityOfFolder/1073741824;     //This is how big File_system_video folder is
+          //return capacityOfFolder/1073741824;     //This is how big File_system_video folder is (GB)
+          return capacityOfFolder;          //Bytes
     }
     
     public static void UploadObjectMPULowLevelAPI() //throws IOException
     { 
-        String existingBucketName  = "modanRetailBucket"; 
+        String existingBucketName  = "modanengine"; 
         String keyName             = "AKIAJAVRYGK3XEOZV72A";
-        String filePath            = "H:/HIGH LEVEL/Projects/Retail Analytics/File_system_video/faithful_.mp3";   
+        String filePath            = "C:/Users/danial/Documents/NEHEMIAH/opencv_libs.txt";   
         
 //        AmazonS3Client s3Client = new AmazonS3Client(new ProfileCredentialsProvider());      
           AmazonS3 s3Client = AmazonS3ClientBuilder.standard()
-                       .withRegion(Regions.DEFAULT_REGION)
+                       .withRegion(Regions.US_EAST_1)
                        .build();
 
         // Create a list of UploadPartResponse objects. You get one of these
@@ -140,7 +138,7 @@ public class CctvService {
                 filePosition += partSize;
             }
 
-            // Step 3: Complete.
+            // Step 3: Complete.           
             CompleteMultipartUploadRequest compRequest = new 
                          CompleteMultipartUploadRequest(
                                     existingBucketName, 
@@ -158,55 +156,5 @@ public class CctvService {
    
         
     }
-    public static void webcam_service ()throws Throwable
-    {
-        File file = new File("output.ts"); 
- 
-        IMediaWriter writer = ToolFactory.makeWriter(file.getName()); 
-        //Dimension size = WebcamResolution.QVGA.getSize(); 
-
-        //writer.addVideoStream(0, 0, ICodec.ID.CODEC_ID_H264, size.width, size.height); 
-
-        Webcam webcam = Webcam.getDefault(); 
-        webcam.setViewSize(new Dimension(640, 480)); // set size 
-        webcam.open(); 
-   
-        long start = System.currentTimeMillis(); 
-
-        for (int i = 0; i < 50; i++) { 
-
-         System.out.println("Capture frame " + i); 
-         
-	
-
-         BufferedImage image = ConverterFactory.convertToType(webcam.getImage(), BufferedImage.TYPE_3BYTE_BGR); 
-         IConverter converter = ConverterFactory.createConverter(image, IPixelFormat.Type.YUV420P); 
-
-         IVideoPicture frame = converter.toPicture(image, (System.currentTimeMillis() - start) * 1000); 
-         frame.setKeyFrame(i == 0); 
-         frame.setQuality(0); 
-
-         writer.encodeVideo(0, frame); 
-
-         // 10 FPS 
-         Thread.sleep(100); 
-        } 
-
-        writer.close(); 
-
-        System.out.println("Video recorded in file: " + file.getAbsolutePath()); 
-       } 
         
-        
-//               // get default webcam and open it
-//		Webcam webcam = Webcam.getDefault();
-//		webcam.open();
-//
-//		// get image
-//		BufferedImage image = webcam.getImage();
-//
-//		// save image to PNG file
-//		ImageIO.write(image, "PNG", new File("test.png"));
-        
-    
-}
+   }

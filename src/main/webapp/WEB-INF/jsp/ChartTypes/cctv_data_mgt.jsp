@@ -20,7 +20,7 @@
         <h1> </h1>
         <p> The size of this file is:<b> ${filesize}  </b> bytes </p>
         <P> There are <b>${number_of_files_in_folder} </b> items in content folder</P>
-        <p> The content folder is <b>${content_folder_capacity}</b> bytes</p>
+        <p> The content folder is <b>${content_folder_capacity}</b> GB</p>
             
         
         

@@ -95,7 +95,7 @@ public class HowToController {
 	@RequestMapping(value = "/multiple-charts-in-a-page", method = RequestMethod.GET)
 	public ModelAndView MultipleChartsInAPage() {
 		ModelAndView modelAndView = new ModelAndView("HowTo/MultipleChartsInAPage");
-		modelAndView.addObject("title", "Multiple Charts in A Page");
+		modelAndView.addObject("title", "IoT Data");
 		return modelAndView;
 	}
 

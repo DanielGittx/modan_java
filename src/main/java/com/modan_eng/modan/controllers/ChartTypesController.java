@@ -1,13 +1,13 @@
 package com.modan_eng.modan.controllers;
 
 
-import com.github.sarxos.webcam.Webcam;
+//import com.github.sarxos.webcam.Webcam;
 import com.modan_eng.modan.services.CctvService;
 import com.modan_eng.modan.services.CreateBucket;
-import com.modan_eng.modan.services.NeuralNetworkStockPredictor;
+//import com.modan_eng.modan.services.NeuralNetworkStockPredictor;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+//import java.util.logging.Level;
+//import java.util.logging.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,24 +18,23 @@ import org.springframework.web.servlet.ModelAndView;
 public class ChartTypesController {
     
         	@RequestMapping(value = "/cctv_data_mgt", method = RequestMethod.GET)   //Name of JSP to GET
-	public ModelAndView Cctv_data_mgt() throws IOException, Throwable {
+	public ModelAndView Cctv_data_mgt() {
                 ModelAndView mav = new ModelAndView("ChartTypes/cctv_data_mgt"); //Name of associated JSP
 		mav.addObject("title", "CCTV Data");
                 CctvService cs = new CctvService();
+                //cs.UploadObjectMPULowLevelAPI();
+                    
                 //CreateBucket Cbucket = new CreateBucket();
                 //NeuralNetworkStockPredictor.results();
                 //mav.addObject("filesize",cs.getFileSize("C:/Users/danial/Downloads/credentials"));
-                mav.addObject("filesize",cs.getFileSize("H:/HIGH LEVEL/Projects/Retail Analytics/File_system_video/faithful_.mp3")); //NB:-The objects need to be added through JstlView Class
-                    try {
-                        //cs.UploadObjectMPULowLevelAPI();   //TODO:- Uploading to AWS
-                        //Cbucket.CreateBucketAWS();
-                        cs.webcam_service();
-                        System.out.println(">>>>>>>>>>> "+Webcam.getWebcams());
-                    } catch (Throwable ex) {
-                        Logger.getLogger(ChartTypesController.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                mav.addObject("number_of_files_in_folder",cs.getNumberOfFilesInFolder());    //TODO:- Evaluate need to display names of all items in content folder. 
-                mav.addObject("content_folder_capacity",cs.getCapacityOfContentFolder());
+                //mav.addObject("filesize",cs.getFileSize("H:/HIGH LEVEL/Projects/Retail Analytics/File_system_video/faithful_.mp3")); //NB:-The objects need to be added through JstlView Class
+                //mav.addObject("number_of_files_in_folder",cs.getNumberOfFilesInFolder());    //TODO:- Evaluate need to display names of all items in content folder. 
+                //mav.addObject("content_folder_capacity",cs.getCapacityOfContentFolder());
+                
+                mav.addObject("filesize",900); //NB:-The objects need to be added through JstlView Class
+                mav.addObject("number_of_files_in_folder",15);    //TODO:- Evaluate need to display names of all items in content folder. 
+                mav.addObject("content_folder_capacity",105);
+                
                 return mav;
 	}
     

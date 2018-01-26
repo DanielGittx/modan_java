@@ -10,7 +10,7 @@ $(function () {
 			markerSize: 0,
 			name: "Men Clothing",
 			type: "column",
-			yValueFormatString: "$###,###.00",
+			yValueFormatString: "Kshs###,###.00",
 			dataPoints: [
 				{ x: new Date("1 Jan 2015"), y: 25987.50 },
 				{ x: new Date("1 Feb 2015"), y: 23436.00 },
@@ -186,7 +186,7 @@ $(function () {
 			labelFontColor: "#717171",
 			labelFontSize: 16,
 			lineColor: "#a2a2a2",
-			minimum: new Date("1 Jan 2015"),
+			minimum: new Date("1 Jan 2017"),
 			tickColor: "#a2a2a2",
 			valueFormatString: "MMM YYYY"
 		},
@@ -196,7 +196,7 @@ $(function () {
 			labelFontColor: "#717171",
 			labelFontSize: 16,
 			lineColor: "#a2a2a2",
-			prefix: "$",
+			prefix: "",
 			tickColor: "#a2a2a2"
 		},
 		toolTip: {
@@ -211,18 +211,18 @@ $(function () {
 				type: "splineArea",
 				yValueFormatString: "$###,###.##",
 				dataPoints: [
-					{ x: new Date("1 Jan 2015"), y: 173250 },
-					{ x: new Date("1 Feb 2015"), y: 195300 },
-					{ x: new Date("1 Mar 2015"), y: 214200 },
-					{ x: new Date("1 Apr 2015"), y: 207900 },
-					{ x: new Date("1 May 2015"), y: 226800 },
-					{ x: new Date("1 Jun 2015"), y: 220500 },
-					{ x: new Date("1 Jul 2015"), y: 239400 },
-					{ x: new Date("1 Aug 2015"), y: 258300 },
-					{ x: new Date("1 Sep 2015"), y: 252000 },
-					{ x: new Date("1 Oct 2015"), y: 264600 },
-					{ x: new Date("1 Nov 2015"), y: 258300 },
-					{ x: new Date("1 Dec 2015"), y: 270900 }
+					{ x: new Date("1 Jan 2017"), y: 500000 },
+					{ x: new Date("1 Feb 2017"), y: 195300 },
+					{ x: new Date("1 Mar 2017"), y: 214200 },
+					{ x: new Date("1 Apr 2017"), y: 207900 },
+					{ x: new Date("1 May 2017"), y: 226800 },
+					{ x: new Date("1 Jun 2017"), y: 220500 },
+					{ x: new Date("1 Jul 2017"), y: 239400 },
+					{ x: new Date("1 Aug 2017"), y: 258300 },
+					{ x: new Date("1 Sep 2017"), y: 252000 },
+					{ x: new Date("1 Oct 2017"), y: 264600 },
+					{ x: new Date("1 Nov 2017"), y: 258300 },
+					{ x: new Date("1 Dec 2017"), y: 270900 }
 				]
 			}
 		]

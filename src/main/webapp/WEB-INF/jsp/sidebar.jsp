@@ -72,7 +72,7 @@
 		<li>
 			<ul id="how-to" class="sub-menu collapse ${fn:contains(pageContext.request.requestURI,'how-to') ? 'in' : ''}">
 <!--			<li><a href="${pageContext.request.contextPath}/how-to/enable-disable-ds">Hide / Show DataSeries</a></li>-->
-                        <li><a href="${pageContext.request.contextPath}/how-to/multiple-charts-in-a-page">Multiple Charts in a Page</a></li>    
+                        <li><a href="${pageContext.request.contextPath}/how-to/multiple-charts-in-a-page">IoT Data</a></li>    
 <!--                <li><a href="${pageContext.request.contextPath}/how-to/live-chart">Dynamic / Live Chart</a></li>
                 <li><a href="${pageContext.request.contextPath}/how-to/sync-multiple-charts">Sync Multiple Charts</a></li>
                 <li><a href="${pageContext.request.contextPath}/how-to/datapoints-from-user-input">Add Data Points From User Input</a></li>

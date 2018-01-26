@@ -45,7 +45,7 @@ $(function () {
 			],
 			states: [
 				{ name: "Others", users: 16 },
-				{ name: "Pennsylvania", users: 4 },
+				{ name: "Eldoret", users: 4 },
 				{ name: "Florida", users: 5 },
 				{ name: "Texas", users: 7 },
 				{ name: "New York", users: 11 },
@@ -77,7 +77,7 @@ $(function () {
 			],
 			states: [
 				{ name: "Others", users: 17 },
-				{ name: "Pennsylvania", users: 4 },
+				{ name: "Eldoret", users: 4 },
 				{ name: "Florida", users: 5 },
 				{ name: "Texas", users: 7 },
 				{ name: "New York", users: 11 },
@@ -109,7 +109,7 @@ $(function () {
 			],
 			states: [
 				{ name: "Others", users: 17 },
-				{ name: "Pennsylvania", users: 4 },
+				{ name: "Eldoret", users: 4 },
 				{ name: "Florida", users: 5 },
 				{ name: "Texas", users: 7 },
 				{ name: "New York", users: 12 },
@@ -141,7 +141,7 @@ $(function () {
 			],
 			states: [
 				{ name: "Others", users: 17 },
-				{ name: "Pennsylvania", users: 4 },
+				{ name: "Eldoret", users: 4 },
 				{ name: "Florida", users: 6 },
 				{ name: "Texas", users: 7 },
 				{ name: "New York", users: 12 },
@@ -173,11 +173,11 @@ $(function () {
 			],
 			states: [
 				{ name: "Others", users: 17 },
-				{ name: "Pennsylvania", users: 4 },
-				{ name: "Florida", users: 6 },
-				{ name: "Texas", users: 7 },
-				{ name: "New York", users: 12 },
-				{ name: "California", users: 13 },
+				{ name: "Eldoret", users: 4 },
+				{ name: "Nakuru", users: 6 },
+				{ name: "Kisumu", users: 7 },
+				{ name: "Mombasa", users: 12 },
+				{ name: "Nairobi", users: 13 },
 			]
 		},
 		{
@@ -205,7 +205,7 @@ $(function () {
 			],
 			states: [
 				{ name: "Others", users: 18 },
-				{ name: "Pennsylvania", users: 3 },
+				{ name: "2017", users: 3 },
 				{ name: "Florida", users: 6 },
 				{ name: "Texas", users: 8 },
 				{ name: "New York", users: 12 },
@@ -237,7 +237,7 @@ $(function () {
 			],
 			states: [
 				{ name: "Others", users: 18 },
-				{ name: "Pennsylvania", users: 3 },
+				{ name: "Eldoret", users: 3 },
 				{ name: "Florida", users: 6 },
 				{ name: "Texas", users: 8 },
 				{ name: "New York", users: 13 },
@@ -498,12 +498,12 @@ $(function () {
 				},
 				type: "bar",
 				dataPoints: [
-					{ y: 16,  label: "Others" },
-					{ y: 4, label: "Pennsylvania" },
-					{ y: 5,  label: "Florida" },
-					{ y: 7, label: "Texas" },
-					{ y: 11, label: "New York" },
-					{ y: 12, label: "California" }
+					{ y: 16,  label: "Nairobi" },
+					{ y: 4, label: "Eldoret" },
+					{ y: 5,  label: "Machakos" },
+					{ y: 7, label: "Mombasa" },
+					{ y: 11, label: "Nakuru" },
+					{ y: 12, label: "Kisumu" }
 				]
 			}
 		]

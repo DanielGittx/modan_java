@@ -46,7 +46,7 @@
 			<div class="row m-b-1">
 				<div class="col-md-12">
 					<div class="card card-block">
-						<h4 class="card-title m-b-2">Revenue - 2015 <span class="tag m-l-1" id="revenue-tag">$2,781,450</span></h4>
+						<h4 class="card-title m-b-2">Revenue - 2017 <span class="tag m-l-1" id="revenue-tag">Kshs 2,781,450</span></h4>
 						<div id="revenue-spline-area-chart"></div>
 					</div>
 				</div>
@@ -77,7 +77,7 @@
 				<div class="col-xl-6">
 					<div class="card card-block">
 						<h4 class="card-title m-b-2">
-							<span id="visitors-chart-heading">New vs Returning Visitors </span>
+							<span id="visitors-chart-heading">New customers vs Returning customers </span>
 							<button class="btn pull-right invisible" type="button" id="visitors-chart-back-button"><i class="fa fa-angle-left fa-lg" aria-hidden="true"></i> Back</button>
 						</h4>
 						<span class="tag custom-tag" id="visitors-chart-tag">Try clicking on any segment</span>
@@ -86,7 +86,7 @@
 				</div>
 				<div class="col-xl-6">
 					<div class="card card-block">
-						<h4 class="card-title m-b-2">Users</h4>
+						<h4 class="card-title m-b-2">Customer trend</h4>
 						<div id="users-spline-chart"></div>
 					</div>
 				</div>

@@ -48,13 +48,13 @@
 			<div class="row m-b-2">
 				<div class="col-lg-4">
 					<div class="card card-block">
-						<h4 class="card-title">Active Users</h4>
+						<h4 class="card-title">Distribution</h4>
 						<div id="users-device-doughnut-chart"></div>
 					</div>
 				</div>
 				<div class="col-lg-4">
 					<div class="card card-block">
-						<h4 class="card-title">Medium</h4>
+						<h4 class="card-title">Medium </h4>
 						<div id="users-medium-pie-chart"></div>
 					</div>
 				</div>
@@ -71,13 +71,13 @@
 			<div class="row">
 				<div class="col-lg-6">
 					<div class="card card-block">
-						<h4 class="card-title m-b-2">Page Views Per Minute</h4>
+						<h4 class="card-title m-b-2">Sales Per Minute</h4>
 						<div id="page-views-per-minute-column-chart"></div>
 					</div>
 				</div>
 				<div class="col-lg-6">
 					<div class="card card-block">
-						<h4 class="card-title m-b-2">Page Views Per Second</h4>
+						<h4 class="card-title m-b-2">Sales Per Second</h4>
 						<div id="page-views-per-second-column-chart"></div>
 					</div>
 				</div>
@@ -88,7 +88,7 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="card card-block">
-						<h4 class="card-title">Location</h4>
+						<h4 class="card-title">Performance per Location</h4>
 						<div id="users-state-bar-chart"></div>
 					</div>
 				</div>
